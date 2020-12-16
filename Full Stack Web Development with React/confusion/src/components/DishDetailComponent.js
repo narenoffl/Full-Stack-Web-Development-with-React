@@ -51,10 +51,12 @@ class DishdetailComponent extends Component {
             const com = comments.map(co=>{
 
                     return(
+                        <div class="container">
                     <React.Fragment>
                     <li>{co.comment}</li><br />
-                    <li>-- {co.author}, {this.formatDate(co.date)}</li><br />
+                    <li>-- {co.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(co.date)))}</li><br />
                     </React.Fragment>
+                    </div>
                 )
 
                 }
