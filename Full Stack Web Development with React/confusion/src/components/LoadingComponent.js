@@ -9,5 +9,3 @@ export const Loading = () => {
     );
 };
 
-
-export default Loading;
