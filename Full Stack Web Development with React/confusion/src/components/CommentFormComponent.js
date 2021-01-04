@@ -16,9 +16,14 @@ class CommentForm extends Component {
         });
     };
 
-handleSubmit(values) {
-    alert(JSON.stringify(values));
-}
+    handleSubmit(values) {
+      this.props.addComment(
+        this.props.dishId,
+        values.select,
+        values.name,
+        values.textarea
+      );
+    }
 
 render() {
     return (
