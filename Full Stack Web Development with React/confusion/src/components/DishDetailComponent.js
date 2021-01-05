@@ -41,7 +41,7 @@ function Comments({ comments }) {
     <Comment detail={detail} formatDate={formatDate} />
   ));
 }
-function RenderAllComments({ comments, addComment, dishId }) {
+function RenderAllComments({ comments, postComment, dishId }) {
   return (
     <div className="col-12 col-md-5 m-1">
       <h3>Comments</h3>
@@ -49,7 +49,7 @@ function RenderAllComments({ comments, addComment, dishId }) {
       <ul style={{ listStyleType: "none", padding: "0" }}>
         <Comments comments={comments} />
       </ul>
-      <CommentForm dishId={dishId} addComment={addComment} />
+      <CommentForm dishId={dishId} postComment={postComment} />
     </div>
   );
 }
@@ -93,7 +93,7 @@ const DishDetail = props => {
         <div className="row">
           <RenderDishDetail dish={props.dish} />
           <RenderAllComments comments={props.comments}
-             addComment={props.addComment}
+             postComment={props.postComment}
              dishId={props.dish.id} />
         </div>
       </div>
