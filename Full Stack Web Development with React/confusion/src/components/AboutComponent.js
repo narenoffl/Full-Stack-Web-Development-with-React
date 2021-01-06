@@ -1,6 +1,9 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Loading } from "./LoadingComponent";
+import { baseUrl } from "../shared/baseUrl";
+import { Stagger, Fade } from "react-animation-components";
 
 function RenderLeader({ leaders }) {
     const imgStyle = {
@@ -8,9 +11,22 @@ function RenderLeader({ leaders }) {
       maxheight: "80px",
       display: "block"
     };
+
+    if(leaders.isLoading){
     return (
-      <React.Fragment>
-        {leaders.map(leader => (
+        <Loading />
+    )}
+    else if(leaders.errMess){
+        return(
+            <h4>{leaders.errMess}</h4>
+        );
+    }
+    else
+    return (
+       <React.Fragment>
+           <Stagger in>
+        {leaders.leaders.map(leader => (
+            <Fade in>
           <Media
             key={leader.id}
             list
@@ -19,7 +35,7 @@ function RenderLeader({ leaders }) {
             <Media left href="#">
               <Media
                 object
-                src={leader.image}
+                src={baseUrl + leader.image}
                 alt={leader.name}
                 title={leader.name}
                 style={imgStyle}
@@ -31,20 +47,14 @@ function RenderLeader({ leaders }) {
               {leader.description}
             </Media>
           </Media>
+          </Fade>
         ))}
+        </Stagger>
       </React.Fragment>
     );
   }
   
-
 function About(props) {
-
-    const leaders = props.leaders.map((leader) => {
-        return (
-            <p>Leader {leader.name}</p>
-        );
-    });
-
     return(
         <div className="container">
             <div className="row">
@@ -107,6 +117,6 @@ function About(props) {
             </div>
         </div>
     );
-}
+    }
 
 export default About;    
