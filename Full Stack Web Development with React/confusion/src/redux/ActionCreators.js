@@ -120,7 +120,7 @@ export const postComment = (dishId, rating, author, comment) => dispatch => {
     });
 };
 
-/* PROMOS */
+/* PROMOTIONS */
 
 export const fetchPromos = () => dispatch => {
   dispatch(promosLoading());
